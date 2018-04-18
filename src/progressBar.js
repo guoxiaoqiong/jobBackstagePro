@@ -6,7 +6,7 @@ function jobBackstagePro(objId,url,options){
 	this.url=urltwo;
 	this.defaults={
 		useProgressBar:false，// 是否使用进度条，默认：false
-	    delayGaps : 500， // 进程请求间隔毫秒数
+	    	delayGaps : 500， // 进程请求间隔毫秒数
 		timeout : 5000， // 一次请求超时的时间限制
 		retryCount :0,  //发生错误时重试的次数
 		retryLimit :10; // 当发生错误时请求的最大次数，默认：10次
@@ -15,9 +15,9 @@ function jobBackstagePro(objId,url,options){
 	}
 	this.options = $.extend(this.defaults,options);//合并参数
 	this.onError = function (xhr,retryCount) {};//失败后的回调函数
-    this.onProgressOne = function (data) {};//成功后返回值为100的回调函数
-    this.onProgressTwo = function (data) {};//成功后返回值小于100的回调函数
-    this.onProgressthree = function (data) {};//成功后返回值为-1的回调函数
+    	this.onProgressOne = function (data) {};//成功后返回值为100的回调函数
+   	this.onProgressTwo = function (data) {};//成功后返回值小于100的回调函数
+    	this.onProgressthree = function (data) {};//成功后返回值为-1的回调函数
 }
 jobBackstagePro.prototype ={
 	progressBar:function (){
@@ -64,9 +64,9 @@ jobBackstagePro.prototype ={
 						_this.options.retryCount++;
 						_this.onError(xhr, _this.options.retryCount);
 						if (_this.options.retryCount <= _this.options.retryLimit) {
-                           var thisP = this; // this 指ajax
-                           _this.setTimeout = window.setTimeout(function(){$.ajax(thisP);},_this.options.retryGaps);
-                            return;
+				 var thisP = this; // this 指ajax
+				  _this.setTimeout = window.setTimeout(function(){$.ajax(thisP);},_this.options.retryGaps);
+				  return;
                         } 
 					}
 				},
