@@ -57,27 +57,28 @@ jobBackstagePro.prototype ={
 			    	if (bolOne) {
 			    		_this.setTimeout=window.setTimeout(function(){$.ajax(thisP)}, _this.options.delayGaps);
 			    	}
-				},
+			     },
 				//错误的时候进行
 				error:function(xhr,textstatus,errothown){
 					if(parseInt(xhr.status,10)>=500){
 						_this.options.retryCount++;
 						_this.onError(xhr, _this.options.retryCount);
 						if (_this.options.retryCount <= _this.options.retryLimit) {
-				 var thisP = this; // this 指ajax
-				  _this.setTimeout = window.setTimeout(function(){$.ajax(thisP);},_this.options.retryGaps);
-				  return;
-                        } 
+				 			var thisP = this; // this 指ajax
+				 			 _this.setTimeout = window.setTimeout(function(){$.ajax(thisP);},_this.options.retryGaps);
+				 			 return;
+                       			 	} 
 					}
 				},
+				//请求超时重新刷新页面
 				complete: function (XMLHttpRequest,status) {
-	                if(status == _this.options.timeout) {
-	                    xhr.abort();    // 超时后中断请求
-	                    $.alert("网络超时，请刷新", function () {
-	                        location.reload();
-	                    })
-	                }
-	            }
+					if(status == _this.options.timeout) {
+					    xhr.abort();    // 超时后中断请求
+					    $.alert("网络超时，请刷新", function () {
+						location.reload();
+					    })
+					}
+	            		}
 			})
 			
 			
