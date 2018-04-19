@@ -25,13 +25,13 @@
 - retryGaps :1000, // 发生错误时，重新发送请求的时间间隔，默认：1000毫秒
 - color:'#0000ff'//默认进度条颜色（蓝色）
 ### 实例方法methods
-> onError：function(xhr,retryCount){}出现错误时的回调函数（xhr为ajax的对象，retryCount为当前请求重试的次数）
+> onError : function(xhr,retryCount){}出现错误时的回调函数（xhr为ajax的对象，retryCount为当前请求重试的次数）
 
-> onProgressOne ： function (data) {}成功后返回值为100的回调函数
+> onProgressOne : function (data) {}成功后返回值为100的回调函数
 
-> onProgressTwo ： function (data) {}成功后返回值小于100的回调函数
+> onProgressTwo : function (data) {}成功后返回值小于100的回调函数
 
-> onProgressthree = function (data) {}成功后返回值为-1的回调函数(展示错误原因)
+> onProgressthree : function (data) {}成功后返回值为-1的回调函数(展示错误原因)
 
 ### 实例（以用人单位数据库的导出为例）
 
