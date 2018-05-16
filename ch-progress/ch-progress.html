@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>进度条进程测试</title>
+		<script src="https://t1.chei.com.cn/common/jquery/1.8.3/jquery.min.js"></script>
+		<script src="src/ch-progressbar.js"></script>
+		<script src="src/mock-min.js"></script>
+    	<style>
+    		.title-header{text-align: center;}
+    		.hide{display: none;}
+    		.emportExcelPage{width: 30%;min-height: 100px;margin: 0 auto;position: relative;}
+    		.progress-box{margin-top: 36px;height: 20px;border:2px solid #65a6f7;border-radius: 20px;}
+    		.progress-bar{background:#65a6f7 ;height: 20px;border-radius: 20px;}
+    		.btn-box,.btn-boxre{margin-top: 10px;text-align: center;}
+    		.btn-box button{width: 100px;height: 40px;display: inline-block;margin-right: 10px;background: #eff9fa;line-height: 40px;text-align: center;color: #666;cursor: pointer;border: none;}
+    		.proText{float: right;color:#FFF;padding-right: 1px;}
+    		.retry{width: 100px;height: 40px;display: inline-block;margin-right: 10px;background: #eff9fa;line-height: 40px;text-align: center;color: #666;cursor: pointer;border: none;}
+	        .partOne{border:1px solid #ddd;padding: 20px;}
+    	</style>
+	</head>
+	<body>
+		<div class="partOne">
+			<p class="title-header">进度条组件测试</p>
+			<div role="tabpanel" class="tab-pane emportExcelPage" id="emportExcelPage" >
+				<div class="progress-box">
+					<div class="progress-bar"  style="width: 0%;">
+						<div class="proText">
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//用mock模拟数据
+		Mock.mock('/employer/export/progress.ation',{
+			'precent|+10':0,
+		})
+		// 请求开始
+		var progressBarAss = new progressBarGenerary($('.progress-bar'),$('.loadingImg'), '/employer/export/progress.ation');
+		progressBarAss.start();
+
+
+		//完成后的回调函数
+		progressBarAss.onProcessComplete = function (data) {
+			// 隐藏进度条
+			$('.emportExcelPage').hide()
+			
+		};
+		//进行中的回调函数
+		progressBarAss.onProgressUpdate = function (data) {
+			//在页面中展示进度
+			if(data.precent){
+				$('.proText').text(data.precent+'%')
+			}
+			
+		};
+		
+
+	</script>
+</html>
